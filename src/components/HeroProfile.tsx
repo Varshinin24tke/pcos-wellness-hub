@@ -33,7 +33,7 @@ const HeroProfile = () => (
       </div>
 
       {/* CTA */}
-      <button className="sm:ml-auto bg-primary text-primary-foreground px-6 py-3 rounded-2xl font-medium text-sm transition-all duration-300 hover:scale-105 active:scale-95 shrink-0"
+      <button className="sm:ml-auto bg-primary text-primary-foreground px-6 py-3 rounded-2xl font-medium text-sm transition-all duration-200 hover:scale-105 active:scale-95 shrink-0"
         style={{ boxShadow: '0 8px 25px -5px rgba(244, 114, 182, 0.3)' }}
       >
         New Check ✦
