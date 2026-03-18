@@ -42,11 +42,20 @@ const PredictionHistory = ({ showEmpty = false }: { showEmpty?: boolean }) => {
 
       <div className="space-y-3">
         {predictions.map((p, i) => (
-          <GlassCard key={p.id} variant="subtle" className="p-5 md:p-6" delay={0.4 + i * 0.06}>
+          <GlassCard
+            key={p.id}
+            variant="subtle"
+            className={`p-5 md:p-6 border-l-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${
+              p.result === "detected"
+                ? "border-l-primary"
+                : "border-l-emerald-500"
+            }`}
+            delay={0.4 + i * 0.06}
+          >
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <span
-                  className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase ${
+                  className={`px-4 py-2 rounded-full text-xs font-bold tracking-wide uppercase ${
                     p.result === "detected"
                       ? "bg-rose-100 text-rose-600"
                       : "bg-emerald-50 text-emerald-600"
@@ -55,11 +64,12 @@ const PredictionHistory = ({ showEmpty = false }: { showEmpty?: boolean }) => {
                   {p.result === "detected" ? "PCOS Detected" : "Clear"}
                 </span>
               </div>
-              <div className="text-right">
-                <p className="text-sm font-medium text-foreground" style={{ fontVariantNumeric: 'tabular-nums' }}>
-                  {p.confidence}% <span className="text-muted-foreground font-normal">confidence</span>
+              <div className="text-right space-y-0.5">
+                <p className="text-lg font-semibold text-foreground" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                  {p.confidence}%
                 </p>
-                <p className="text-xs text-muted-foreground mt-0.5">{p.date}</p>
+                <p className="text-xs text-muted-foreground font-medium">confidence</p>
+                <p className="text-xs text-muted-foreground">{p.date}</p>
               </div>
             </div>
           </GlassCard>
