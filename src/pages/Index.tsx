@@ -1,3 +1,4 @@
+// PCOS Nourish AI Dashboard
 import HeroProfile from "@/components/HeroProfile";
 import StatsOverview from "@/components/StatsOverview";
 import PredictionHistory from "@/components/PredictionHistory";
