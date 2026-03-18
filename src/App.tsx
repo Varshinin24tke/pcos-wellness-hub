@@ -6,11 +6,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
-// @ts-ignore - QueryClient exists at runtime
 const queryClient = new QueryClient();
 
 const App = () => (
-  // @ts-ignore
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
