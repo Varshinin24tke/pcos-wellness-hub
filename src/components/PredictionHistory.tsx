@@ -1,0 +1,80 @@
+import { motion } from "framer-motion";
+import GlassCard from "./GlassCard";
+import { Sparkles } from "lucide-react";
+
+interface Prediction {
+  id: number;
+  result: "detected" | "clear";
+  confidence: number;
+  date: string;
+}
+
+const predictions: Prediction[] = [
+  { id: 1, result: "detected", confidence: 87.3, date: "Mar 14, 2026" },
+  { id: 2, result: "clear", confidence: 94.1, date: "Feb 28, 2026" },
+  { id: 3, result: "clear", confidence: 91.7, date: "Feb 10, 2026" },
+  { id: 4, result: "detected", confidence: 78.9, date: "Jan 22, 2026" },
+  { id: 5, result: "clear", confidence: 98.4, date: "Jan 05, 2026" },
+];
+
+const EmptyState = () => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.96 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5, ease: [0.2, 0, 0, 1] }}
+    className="flex flex-col items-center justify-center py-20 text-center"
+  >
+    <div className="w-16 h-16 rounded-3xl bg-rose-100/60 flex items-center justify-center mb-6">
+      <Sparkles className="w-7 h-7 text-rose-400" />
+    </div>
+    <p className="text-lg font-display font-medium text-foreground">No health insights yet 💖</p>
+    <p className="text-sm text-muted-foreground mt-2 max-w-xs">
+      Start your first check to see results and begin tracking your wellness journey.
+    </p>
+  </motion.div>
+);
+
+const PredictionHistory = ({ showEmpty = false }: { showEmpty?: boolean }) => {
+  if (showEmpty) return <EmptyState />;
+
+  return (
+    <div>
+      <motion.h2
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.35 }}
+        className="text-xl md:text-2xl font-display font-semibold text-foreground tracking-tight mb-6"
+      >
+        Your Health History
+      </motion.h2>
+
+      <div className="space-y-3">
+        {predictions.map((p, i) => (
+          <GlassCard key={p.id} variant="subtle" className="p-5 md:p-6" delay={0.4 + i * 0.06}>
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <span
+                  className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide uppercase ${
+                    p.result === "detected"
+                      ? "bg-rose-100 text-rose-600"
+                      : "bg-emerald-50 text-emerald-600"
+                  }`}
+                >
+                  {p.result === "detected" ? "PCOS Detected" : "Clear"}
+                </span>
+              </div>
+              <div className="text-right">
+                <p className="text-sm font-medium tabular-nums text-foreground">
+                  {p.confidence}% <span className="text-muted-foreground font-normal">confidence</span>
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">{p.date}</p>
+              </div>
+            </div>
+          </GlassCard>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default PredictionHistory;
