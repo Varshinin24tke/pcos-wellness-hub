@@ -1,7 +1,7 @@
 import GlassCard from "./GlassCard";
 
 const HeroProfile = () => (
-  <GlassCard className="p-8 md:p-10 relative" delay={0}>
+  <GlassCard className="p-8 md:p-10 relative shadow-lg hover:shadow-2xl transition-shadow duration-300" delay={0}>
     {/* Glow effect */}
     <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'rgba(253, 164, 175, 0.2)', filter: 'blur(100px)' }} />
     <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full pointer-events-none" style={{ background: 'rgba(253, 230, 196, 0.3)', filter: 'blur(80px)' }} />
