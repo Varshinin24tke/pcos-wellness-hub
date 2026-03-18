@@ -1,16 +1,16 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+// PCOS Nourish AI Dashboard
+import HeroProfile from "@/components/HeroProfile";
+import StatsOverview from "@/components/StatsOverview";
+import PredictionHistory from "@/components/PredictionHistory";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
-  return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
+const Index = () => (
+  <div className="min-h-screen aura-bg">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 md:py-16 space-y-8 md:space-y-10">
+      <HeroProfile />
+      <StatsOverview />
+      <PredictionHistory />
     </div>
-  );
-};
-
-const Index = PlaceholderIndex;
+  </div>
+);
 
 export default Index;
