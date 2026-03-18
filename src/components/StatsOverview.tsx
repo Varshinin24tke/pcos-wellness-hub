@@ -2,8 +2,8 @@ import { BarChart3, CalendarDays, Heart } from "lucide-react";
 import GlassCard from "./GlassCard";
 
 const stats = [
-  { icon: BarChart3, label: "Total Predictions", value: "12", color: "text-rose-400" },
-  { icon: CalendarDays, label: "Last Check", value: "Mar 14", color: "text-rose-400" },
+  { icon: BarChart3, label: "Total Predictions", value: "12", color: "text-primary" },
+  { icon: CalendarDays, label: "Last Check", value: "Mar 14", color: "text-primary" },
   { icon: Heart, label: "Health Status", value: "Low Risk", color: "text-emerald-500" },
 ];
 
@@ -12,12 +12,12 @@ const StatsOverview = () => (
     {stats.map((stat, i) => (
       <GlassCard key={stat.label} className="p-6 md:p-8" delay={0.08 + i * 0.06}>
         <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-white/80 flex items-center justify-center shrink-0 shadow-sm">
+          <div className="w-12 h-12 rounded-2xl bg-card/80 flex items-center justify-center shrink-0" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
             <stat.icon className={`w-5 h-5 ${stat.color}`} />
           </div>
           <div>
             <p className="text-muted-foreground text-xs font-medium uppercase tracking-wide">{stat.label}</p>
-            <p className="text-2xl md:text-3xl font-medium tracking-tight tabular-nums mt-1 text-foreground">
+            <p className="text-2xl md:text-3xl font-medium tracking-tight mt-1 text-foreground" style={{ fontVariantNumeric: 'tabular-nums' }}>
               {stat.value}
             </p>
           </div>

@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import GlassCard from "./GlassCard";
 import { Sparkles } from "lucide-react";
 
@@ -18,20 +17,15 @@ const predictions: Prediction[] = [
 ];
 
 const EmptyState = () => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.96 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5, ease: [0.2, 0, 0, 1] }}
-    className="flex flex-col items-center justify-center py-20 text-center"
-  >
-    <div className="w-16 h-16 rounded-3xl bg-rose-100/60 flex items-center justify-center mb-6">
-      <Sparkles className="w-7 h-7 text-rose-400" />
+  <div className="flex flex-col items-center justify-center py-20 text-center animate-fade-up">
+    <div className="w-16 h-16 rounded-3xl flex items-center justify-center mb-6" style={{ background: 'rgba(244, 114, 182, 0.1)' }}>
+      <Sparkles className="w-7 h-7 text-primary" />
     </div>
     <p className="text-lg font-display font-medium text-foreground">No health insights yet 💖</p>
     <p className="text-sm text-muted-foreground mt-2 max-w-xs">
       Start your first check to see results and begin tracking your wellness journey.
     </p>
-  </motion.div>
+  </div>
 );
 
 const PredictionHistory = ({ showEmpty = false }: { showEmpty?: boolean }) => {
@@ -39,14 +33,12 @@ const PredictionHistory = ({ showEmpty = false }: { showEmpty?: boolean }) => {
 
   return (
     <div>
-      <motion.h2
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.35 }}
-        className="text-xl md:text-2xl font-display font-semibold text-foreground tracking-tight mb-6"
+      <h2
+        className="text-xl md:text-2xl font-display font-semibold text-foreground tracking-tight mb-6 animate-fade-up"
+        style={{ animationDelay: '0.35s', animationFillMode: 'backwards' }}
       >
         Your Health History
-      </motion.h2>
+      </h2>
 
       <div className="space-y-3">
         {predictions.map((p, i) => (
@@ -64,7 +56,7 @@ const PredictionHistory = ({ showEmpty = false }: { showEmpty?: boolean }) => {
                 </span>
               </div>
               <div className="text-right">
-                <p className="text-sm font-medium tabular-nums text-foreground">
+                <p className="text-sm font-medium text-foreground" style={{ fontVariantNumeric: 'tabular-nums' }}>
                   {p.confidence}% <span className="text-muted-foreground font-normal">confidence</span>
                 </p>
                 <p className="text-xs text-muted-foreground mt-0.5">{p.date}</p>
