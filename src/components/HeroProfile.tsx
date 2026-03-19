@@ -1,3 +1,5 @@
+import { LogOut } from "lucide-react";
+import { toast } from "sonner";
 import GlassCard from "./GlassCard";
 
 const HeroProfile = () => (
