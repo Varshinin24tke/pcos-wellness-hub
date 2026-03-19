@@ -9,6 +9,22 @@ const data = [
   { date: "Mar 14", confidence: 87.3 },
 ];
 
+const CustomTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
+  return (
+    <div
+      className="rounded-2xl px-4 py-3 text-xs shadow-lg border border-border/50"
+      style={{
+        background: "rgba(255,255,255,0.92)",
+        backdropFilter: "blur(16px)",
+      }}
+    >
+      <p className="font-medium text-foreground">{label}</p>
+      <p className="text-primary font-semibold mt-0.5">{payload[0].value}% confidence</p>
+    </div>
+  );
+};
+
 const HealthTrendChart = () => (
   <div>
     <h2
@@ -22,9 +38,16 @@ const HealthTrendChart = () => (
         <AreaChart data={data} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
           <defs>
             <linearGradient id="pinkGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="hsl(330, 81%, 70%)" stopOpacity={0.3} />
+              <stop offset="0%" stopColor="hsl(330, 81%, 70%)" stopOpacity={0.35} />
               <stop offset="100%" stopColor="hsl(330, 81%, 70%)" stopOpacity={0.02} />
             </linearGradient>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="hsl(340, 30%, 92%)" vertical={false} />
           <XAxis
@@ -39,23 +62,16 @@ const HealthTrendChart = () => (
             axisLine={false}
             tickLine={false}
           />
-          <Tooltip
-            contentStyle={{
-              background: "rgba(255,255,255,0.9)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid hsl(340, 30%, 92%)",
-              borderRadius: "12px",
-              fontSize: "12px",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.06)",
-            }}
-            formatter={(value: number) => [`${value}%`, "Confidence"]}
-          />
+          <Tooltip content={<CustomTooltip />} cursor={{ stroke: "hsl(330, 81%, 70%)", strokeWidth: 1, strokeDasharray: "4 4" }} />
           <Area
             type="monotone"
             dataKey="confidence"
             stroke="hsl(330, 81%, 70%)"
             strokeWidth={2.5}
             fill="url(#pinkGradient)"
+            filter="url(#glow)"
+            animationDuration={1200}
+            animationEasing="ease-out"
           />
         </AreaChart>
       </ResponsiveContainer>
