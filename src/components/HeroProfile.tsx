@@ -1,3 +1,5 @@
+import { LogOut } from "lucide-react";
+import { toast } from "sonner";
 import GlassCard from "./GlassCard";
 
 const HeroProfile = () => (
@@ -32,12 +34,21 @@ const HeroProfile = () => (
         </p>
       </div>
 
-      {/* CTA */}
-      <button className="sm:ml-auto bg-primary text-primary-foreground px-6 py-3 rounded-2xl font-medium text-sm transition-all duration-200 hover:scale-105 active:scale-95 shrink-0"
-        style={{ boxShadow: '0 8px 25px -5px rgba(244, 114, 182, 0.3)' }}
-      >
-        New Check ✦
-      </button>
+      {/* Actions */}
+      <div className="sm:ml-auto flex items-center gap-3 shrink-0">
+        <button className="bg-primary text-primary-foreground px-6 py-3 rounded-2xl font-medium text-sm transition-all duration-200 hover:scale-105 active:scale-95"
+          style={{ boxShadow: '0 8px 25px -5px rgba(244, 114, 182, 0.3)' }}
+        >
+          New Check ✦
+        </button>
+        <button
+          onClick={() => toast.success("Logged out successfully")}
+          className="p-3 rounded-2xl text-muted-foreground hover:text-foreground hover:bg-destructive/10 transition-all duration-200 hover:scale-105 active:scale-95"
+          title="Logout"
+        >
+          <LogOut className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   </GlassCard>
 );
